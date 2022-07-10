@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Telegram.Bot;
 using Modul11.Controllers;
+using Modul11.Services;
+using Modul11.Configuration;
 
 namespace Modul11
 {
@@ -33,12 +35,23 @@ namespace Modul11
             services.AddTransient<VoiceMessageController>();
             services.AddTransient<TextMessageController>();
             services.AddTransient<InlineKeyboardController>();
+            services.AddSingleton<IStorage, MemoryStorage>();
 
             // Регистрируем объект TelegramBotClient c токеном подключения
-            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient("1735772714:AAG4TLlag_RexSaDZSv5SyznT3to3RajQ1w"));
+            AppSettings appSettings = BuildAppSettings();
+            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(appSettings.BotToken));
+            services.AddHostedService<Bot>();
 
             // Регистрируем постоянно активный сервис бота
             services.AddHostedService<Bot>();
+        }
+
+        static AppSettings BuildAppSettings()
+        {
+            return new AppSettings()
+            {
+                BotToken = "1735772714:AAG4TLlag_RexSaDZSv5SyznT3to3RajQ1w"
+            };
         }
     }
 }
