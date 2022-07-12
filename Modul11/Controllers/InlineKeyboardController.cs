@@ -16,9 +16,10 @@ namespace Modul11.Controllers
         private readonly ITelegramBotClient _telegramClient;
         private readonly IStorage _memoryStorage;
 
-        public InlineKeyboardController(ITelegramBotClient telegramBotClient)
+        public InlineKeyboardController(ITelegramBotClient telegramBotClient, IStorage memoryStorage)
         {
             _telegramClient = telegramBotClient;
+            _memoryStorage = memoryStorage;
         }
 
         public async Task Handle(CallbackQuery? callbackQuery, CancellationToken ct)
