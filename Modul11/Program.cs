@@ -36,6 +36,7 @@ namespace Modul11
             services.AddTransient<TextMessageController>();
             services.AddTransient<InlineKeyboardController>();
             services.AddSingleton<IStorage, MemoryStorage>();
+            services.AddSingleton<IFileHandler, AudioFileHandler>();
 
             // Регистрируем объект TelegramBotClient c токеном подключения
             AppSettings appSettings = BuildAppSettings();
@@ -50,7 +51,11 @@ namespace Modul11
         {
             return new AppSettings()
             {
-                BotToken = "1735772714:AAG4TLlag_RexSaDZSv5SyznT3to3RajQ1w"
+                //                BotToken = "1735772714:AAG4TLlag_RexSaDZSv5SyznT3to3RajQ1w"
+                DownloadsFolder = "C:\\Users\\evmor\\Downloads",
+                BotToken = "1735772714:AAG4TLlag_RexSaDZSv5SyznT3to3RajQ1w",
+                AudioFileName = "audio",
+                InputAudioFormat = "ogg",
             };
         }
     }
