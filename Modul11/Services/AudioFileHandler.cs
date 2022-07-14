@@ -12,7 +12,8 @@ namespace Modul11.Services
 {
     public class AudioFileHandler : IFileHandler
     {
-        private readonly Configuration.AppSettings _appSettings;
+        //private readonly Configuration.AppSettings _appSettings;
+        private readonly AppSettings _appSettings;
         private readonly ITelegramBotClient _telegramBotClient;
 
         public AudioFileHandler(ITelegramBotClient telegramBotClient, AppSettings appSettings)

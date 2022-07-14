@@ -12,7 +12,9 @@ namespace Modul11.Controllers
     class VoiceMessageController
     {
         private readonly ITelegramBotClient _telegramClient;
+        //private readonly Configuration.AppSettings _appSettings;
 
+        //public VoiceMessageController(ITelegramBotClient telegramBotClient, AppSettings appSettings)
         public VoiceMessageController(ITelegramBotClient telegramBotClient)
         {
             _telegramClient = telegramBotClient;
